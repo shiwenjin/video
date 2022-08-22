@@ -1,0 +1,32 @@
+server:
+  port: 9527
+
+#数据库配置
+spring:
+  servlet:
+    multipart:
+      max-file-size: 500MB
+  mvc:
+    static-path-pattern: /static/**
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:config/db/video.db
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      max-lifetime: 1800000
+      connection-timeout: 20000
+      auto-commit: true
+      idle-timeout: 300000
+  web:
+    resources:
+      static-locations: classpath:/static,file:config
+
+#控制台打印SQL语句
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+file:
+  upload:
+    path: config
